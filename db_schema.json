@@ -1,0 +1,26 @@
+{
+    "users": [
+        {
+            "id": 0,
+            "user_name": "",
+            "DOB": "",
+            "Gender": "",
+            "Blog_IDs": [
+
+            ],
+            "saved": [],
+            "createdAt": ""
+        }
+    ],
+    "Blogs": [
+        {
+            "id": 0,
+            "content": "",
+            "user_id": "",
+            "delete_status": false,
+            "createdAt": "",
+            "saved": 1,
+            "likes": 0
+        }
+    ]
+}

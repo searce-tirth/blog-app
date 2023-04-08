@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Add Blog Page</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+          }
+          
+          label {
+            display: block;
+            margin-bottom: 10px;
+          }
+          
+          input[type="text"],
+          textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+          }
+          
+          input[type="submit"] {
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+          }
+          
+          input[type="submit"]:hover {
+            background-color: #3e8e41;
+          }
+
+          #data {
+            background-color: #f0f0f0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin: 20px;
+            padding: 10px;
+          }
+          
+    </style>
+  </head>
+  <body>
+    <form id="blogForm">
+      <label for="userId">User ID:</label>
+      <input type="text" id="userId" name="userId" required>
+      <br>
+
+      <label for="content">Content:</label>
+      <textarea id="content" name="content" rows="10" required></textarea>
+      <br>
+
+      <input type="submit" value="Add Blog">
+    </form>
+
+    <div id="data"></div>
+
+    <script>
+        const form = document.querySelector('#blogForm');
+
+form.addEventListener('submit', function(e) {
+  e.preventDefault();
+
+  const userId = document.querySelector('#userId').value;
+  const content = document.querySelector('#content').value;
+
+  const data = { "id":userId, "content":content };
+  const options = {
+    method: 'POST',
+    body: JSON.stringify(data),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  };
+
+  fetch('http://127.0.0.1:5001/create_blog', options)
+    .then(response => response.json())
+    .then(data => {
+        const dataDiv = document.getElementById('data');
+        dataDiv.innerHTML = JSON.stringify(data);
+    })
+    .catch(error => console.error(error));
+});
+
+    </script>
+  </body>
+</html>

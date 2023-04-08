@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Read Blog Page</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+          }
+          
+          label {
+            display: block;
+            margin-bottom: 10px;
+          }
+          
+          input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+          }
+          
+          input[type="submit"] {
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+          }
+          
+          input[type="submit"]:hover {
+            background-color: #3e8e41;
+          }
+          
+          #blogContent {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+          }
+          
+    </style>
+  </head>
+  <body>
+    <form id="blogForm">
+      <label for="userId">User ID:</label>
+      <input type="text" id="userId" name="userId" required>
+      <br>
+
+      <label for="blogId">Blog ID:</label>
+      <input type="text" id="blogId" name="blogId" required>
+      <br>
+
+      <input type="submit" value="Read Blog">
+    </form>
+    <div id="blogCreated"></div>
+    <div id="blogview"></div>
+    <div id="blogContent"></div>
+
+    <script>
+        const form = document.querySelector('#blogForm');
+const blogContent = document.querySelector('#blogContent');
+
+form.addEventListener('submit', function(e) {
+  e.preventDefault();
+
+  const userId = document.querySelector('#userId').value;
+  const blogId = document.querySelector('#blogId').value;
+
+  const options = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ "user_id":userId, "blog_id":blogId })
+  };
+
+  fetch('http://127.0.0.1:5001/read_blog', options)
+    .then(response => response.json())
+    .then(data => {
+      const content = JSON.stringify(data,null,3);
+      blogContent.innerHTML = content;
+      /*const contentcreated = data.createdAt;
+      blogCreated.innerHTML = contentcreated;
+      const blogviews = data.views;
+      blogview.innerHTML = blogviews;*/
+    })
+    .catch(error => console.error(error));
+});
+
+    </script>
+  </body>
+</html>
