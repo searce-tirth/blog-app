@@ -83,7 +83,7 @@ form.addEventListener('submit', function(e) {
     body: JSON.stringify({ "user_id":userId, "blog_id":blogId })
   };
 
-  fetch('http://0.0.0.0:80/read_blog', options)
+  fetch('http://34.27.181.17:80/read_blog', options)
     .then(response => response.json())
     .then(data => {
       const content = JSON.stringify(data,null,3);
