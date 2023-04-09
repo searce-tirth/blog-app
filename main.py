@@ -1,6 +1,6 @@
 import json
 from flask_cors import CORS
-from flask import Flask, Response, request
+from flask import Flask, Response, request, render_template
 from view.create_blog import createBlog
 
 from view.create_user import createUser
@@ -14,7 +14,7 @@ CORS(app)
 
 @app.route("/", methods=['GET'])
 def test():
-    return render_tempalet("readblog.html")
+    return render_template("readblog.html")
 
 
 @app.route("/create_user", methods=['POST'])
