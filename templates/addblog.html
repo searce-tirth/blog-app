@@ -83,7 +83,7 @@ form.addEventListener('submit', function(e) {
     }
   };
 
-  fetch('http://127.0.0.1:5001/create_blog', options)
+  fetch('http://0.0.0.0:80/create_blog', options)
     .then(response => response.json())
     .then(data => {
         const dataDiv = document.getElementById('data');
