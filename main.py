@@ -14,12 +14,7 @@ CORS(app)
 
 @app.route("/", methods=['GET'])
 def test():
-    response = Response(
-        json.dumps({
-            "message": "Server is working. Test Successfull."
-        }), status=200, mimetype="application/json"
-    )
-    return response
+    return render_tempalet("readblog.html")
 
 
 @app.route("/create_user", methods=['POST'])
