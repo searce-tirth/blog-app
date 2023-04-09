@@ -58,4 +58,4 @@ def add_deleted_blog():
 
 
 if __name__ == '__main__':
-    app.run(port=8080, host="127.0.0.1", debug=True)
+    app.run(port=80, host="0.0.0.0", debug=True)
