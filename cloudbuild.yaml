@@ -11,7 +11,7 @@ steps:
   args:
   - -c
   - |
-    gcloud run deploy ps3-product \
+    gcloud run deploy blog-app \
     --image gcr.io/thematic-metric-381904/github.com/searce-tirth/blog-app:$COMMIT_SHA \
     --region us-central1 \
     --allow-unauthenticated \
