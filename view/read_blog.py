@@ -71,5 +71,5 @@ class readBlog:
         self.response = Response(json.dumps({
             "message": "Can't get the blog from Database"
         }), status=500, mimetype="application/json")
-        self.DB_CONNECTION.update_one({"id": str(self.USER_ID), "blogs.blog_id": str(self.BLOG_ID)},
+        self.DB_CONNECTION.update_one({"blogs.blog_name": str(self.BLOG_NAME)},
                                       {"$inc": {"blogs.$.views": 1}})
