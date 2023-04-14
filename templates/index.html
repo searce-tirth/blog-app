@@ -1,81 +1,204 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-  <title>Simple GUI to test Application</title>
+  <title>Blog App</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
+      background-color: #eecfa9;
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #e29353a3;
+      color: #fff;
+      padding: 25px;
+      text-align: center;
     }
 
     h1 {
-      color: #007bff;
+      font-size: 48px;
+      margin: 0;
+    }
+
+    nav {
+      background-color: #9F8170;
+      color: #fff;
+      display: flex;
+      justify-content: space-between;
+      padding: 1px;
+    }
+
+    ul {
+      display: flex;
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    li {
+      margin: 0 70px;
+    }
+
+    a {
+      color: #fff;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    section {
+      margin: 20px;
+      text-align: center;
+    }
+
+    footer {
+      background-color: #e29353a3;
+      color: #fff;
+      padding: 10px;
+      text-align: center;
     }
 
     form {
-      margin-top: 20px;
+      display: none;
+      margin: 20px auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      background-color: #e29353a3;
+      box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+      max-width: 600px;
     }
 
     label {
       display: block;
-      margin-bottom: 5px;
+      margin-bottom: 10px;
+      color: #333;
+      font-size: 18px;
     }
 
-    input[type="text"] {
+    button {
+      margin: 20px auto;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 0px;
+      background-color: transparent;
+      color: #fff;
+      font-size: 18px;
+      cursor: pointer;
+      
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #b79481;
+    }
+
+    input[type="text"],
+    input[type="password"],
+    textarea {
+      display: block;
       width: 100%;
-      padding: 5px;
-      margin-bottom: 10px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 18px;
+      color: #333;
     }
 
     input[type="submit"] {
-      background-color: #007bff;
-      color: #fff;
-      padding: 10px 20px;
+      display: block;
+      margin-top: 20px;
+      padding: 10px;
       border: none;
+      border-radius: 5px;
+      background-color: #9F8170;
+      color: #fff;
+      font-size: 18px;
       cursor: pointer;
+      box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+      transition: background-color 0.3s ease;
     }
 
-    #response {
-      margin-top: 10px;
-      color: #007bff;
-    }
-
-    .error {
-      color: red;
+    input[type="submit"]:hover {
+      background-color: #9F8170;
     }
   </style>
-    <script>
-    // Define a function to fetch data from the API
-    function fetchData() {
-      // URL of the API endpoint
-      const apiUrl = 'https://blog-app-o7s6emedkq-uc.a.run.app/read_blog';
-      const name = document.getElementById('name').value;
-      const data = {
-        "name": name,
-      };
-
-
-      // Fetch data from the API using the Fetch API
-      fetch(apiUrl, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/text'
-        },
-        body: JSON.stringify(data)
-      })
-     .then(response => response.json())
- 
-      // Displaying results to console
-      .then(json => console.log(json));
-   }
+  <script>
+    function showForm(formId) {
+      document.getElementById('createUserForm').style.display = "none";
+      document.getElementById('createBlogForm').style.display = "none";
+      document.getElementById('readBlogForm').style.display = "none";
+      document.getElementById('deleteBlogForm').style.display = "none";
+      document.getElementById('recoverBlogForm').style.display = "none";
+      var form = document.getElementById(formId);
+      form.style.display = "block";
+    }
   </script>
 </head>
+
 <body>
-  <h1>Form Data to Web API Example</h1>
-  <form onsubmit="fetchData()">
-    <label for="name">Name:</label>
-    <input type="text" id="name" required>
-    <br>
-    <input type="submit" value="Submit">
-  </form>
+  <header>
+    <h1>BLOG APP</h1>
+  </header>
+  <nav>
+    <ul>
+      <li><button onclick="showForm('createUserForm')">Create User</button></li>
+      <li><button onclick="showForm('createBlogForm')">Create Blog</button></li>
+      <li><button onclick="showForm('readBlogForm')">Read Blog</button></li>
+      <li><button onclick="showForm('deleteBlogForm')">Delete Blog</button></li>
+      <li><button onclick="showForm('recoverBlogForm')">Recover Blog</button></li>
+    </ul>
+  </nav>
+  <section>
+    <h2>Welcome to our blog app!</h2>
+    <p>This app allows the user to create blogs, read blogs and delete blogs. In case if you wish to recover a deleted
+      blog then you will be able to do so</p>
+    <form id="createUserForm">
+      <h2>Create User</h2>
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="username">
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password">
+      <input type="submit" value="Create User">
+    </form>
+
+    <form id="createBlogForm">
+      <h2>Create Blog</h2>
+      <label for="title">Title:</label>
+      <input type="text" id="title" name="title">
+      <label for="content">Content:</label>
+      <textarea id="content" name="content"></textarea>
+      <input type="submit" value="Create Blog">
+    </form>
+
+    <form id="deleteBlogForm">
+      <h2>Delete Blog</h2>
+      <label for="blogId">Blog ID:</label>
+      <input type="text" id="blogId" name="blogId">
+      <input type="submit" value="Delete Blog">
+    </form>
+
+    <form id="readBlogForm">
+      <h2>Read Blog</h2>
+      <label for="blogId">Blog ID:</label>
+      <input type="text" id="blogId" name="blogId">
+      <input type="submit" value="Read Blog">
+    </form>
+
+    <form id="recoverBlogForm">
+      <h2>Recover Blog</h2>
+      <label for="blogId">Blog ID:</label>
+      <input type="text" id="blogId" name="blogId">
+      <input type="submit" value="Recover Blog">
+    </form>
+  </section>
+  <footer>
+    <p>&copy; Searce Logistics</p>
+  </footer>
 </body>
+
 </html>
