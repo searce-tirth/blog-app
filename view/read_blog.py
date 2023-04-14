@@ -6,9 +6,7 @@ from utilities.get_db_connection import get_db_connection
 class readBlog:
     def __init__(self, request_payload):
         self.request_payload = request_payload
-        self.USER_ID = self.request_payload.get("user_id")
-        self.BLOG_ID = self.request_payload.get("blog_id")
-
+        self.BLOG_NAME = self.request_payload.get("name")
         self.response = Response(
             json.dumps({
                 "message": "Internal Server Error"
@@ -26,8 +24,7 @@ class readBlog:
             self.response = Response(json.dumps({
                 "message": "Read Blog",
                 "data": {
-                    "user_id": self.USER_ID,
-                    "blog_id": self.BLOG_ID,
+                    "blog_name": self.BLOG_NAME,
                     "content": self.CONTENT,
                     "createdAt": self.CREATED_AT,
                     "views": self.VIEW
@@ -46,11 +43,10 @@ class readBlog:
         self.response = Response(json.dumps({
             "message": "Can't get the blog from Database"
         }), status=500, mimetype="application/json")
-        dictn = (self.DB_CONNECTION.find({"id": str(self.USER_ID)}, {"blogs": 1, "_id": 0}))
-        print(dictn)
+        dictn = (self.DB_CONNECTION.find({"blogs": 1, "_id": 0}))
         for i in dictn:
             for j in i["blogs"]:
-                if j["blog_id"] == str(self.BLOG_ID) and j["delete_status"] == "false":
+                if j["blog_name"] == str(self.BLOG_NAME) and j["delete_status"] == "false":
                     self.CONTENT = j["content"]
                     self.CREATED_AT = str(j["created_at"])
                     self.VIEW = j["views"]
