@@ -14,7 +14,7 @@ CORS(app)
 
 @app.route("/", methods=['GET'])
 def test():
-    return render_template("readblog.html")
+    return render_template("index.html")
 
 
 @app.route("/create_user", methods=['POST'])
