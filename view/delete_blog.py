@@ -9,7 +9,7 @@ class deleteBlog:
         self.request_payload = request_payload
         self.USER_NAME = self.request_payload.get("user_name")
         self.USER_ID = self.request_payload.get("user_id")
-        self.BLOG_ID = self.request_payload.get("blog_name")
+        self.BLOG_NAME = self.request_payload.get("blog_name")
         
 
         self.response = Response(
