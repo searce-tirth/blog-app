@@ -43,10 +43,49 @@
       color: red;
     }
   </style>
+    <script>
+    // Define a function to fetch data from the API
+    function fetchData() {
+      // URL of the API endpoint
+      const apiUrl = 'https://blog-app-o7s6emedkq-uc.a.run.app/read_blog';
+      const name = document.getElementById('name').value;
+      const data = {
+        name: name,
+      };
+
+
+      // Fetch data from the API using the Fetch API
+      fetch(apiUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      })
+        .then(response => {
+          // Check if response is successful (status code 200-299)
+          if (response.ok) {
+            // Return response data as JSON
+            return response.json();
+          } else {
+            // If response is not successful, throw an error
+            throw new Error('Error fetching data from API: ' + response.status);
+          }
+        })
+        .then(data => {
+          // Do something with the data
+          console.log('Data:', data);
+        })
+        .catch(error => {
+          // Handle any errors that occur during fetch
+          console.error(error);
+        });
+    }
+  </script>
 </head>
 <body>
   <h1>Form Data to Web API Example</h1>
-  <form action="https://blog-app-o7s6emedkq-uc.a.run.app/read_blog" method="post">
+  <form onsubmit="fetchData()">
     <label for="name">Name:</label>
     <input type="text" id="name" required>
     <br>
