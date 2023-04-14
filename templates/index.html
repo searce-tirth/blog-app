@@ -62,25 +62,11 @@
         },
         body: JSON.stringify(data)
       })
-        .then(response => {
-          // Check if response is successful (status code 200-299)
-          if (response.ok) {
-            // Return response data as JSON
-            return response.json();
-          } else {
-            // If response is not successful, throw an error
-            throw new Error('Error fetching data from API: ' + response.status);
-          }
-        })
-        .then(data => {
-          // Do something with the data
-          console.log('Data:', data);
-        })
-        .catch(error => {
-          // Handle any errors that occur during fetch
-          console.error(error);
-        });
-    }
+     .then(response => response.json())
+ 
+      // Displaying results to console
+      .then(json => console.log(json));
+   }
   </script>
 </head>
 <body>
