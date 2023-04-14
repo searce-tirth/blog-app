@@ -53,27 +53,27 @@ class deleteBlog:
                     self.delete_blog()
                     return
                 
-                elif j["blog_id"] == (self.BLOG_NAME) and j["delete_status"] == "true":
+                elif j["blog_name"] == (self.BLOG_NAME) and j["delete_status"] == "true":
                     self.response = Response(json.dumps({
                     "message": "Blog is removed by author"
                     }), status=500, mimetype="application/json")
                     return
             else:
                 self.response = Response(json.dumps({
-                    "message": "You can't delete this blog"
+                    "message": "Unauthorized user ID"
                 }), status=500, mimetype="application/json")
                 break
             
         else:
             self.response = Response(json.dumps({
-                    "message": "User doesn't exist"
+                    "message": "Incorrect user ID"
                 }), status=500, mimetype="application/json")
             
     def delete_blog(self):
         self.response = Response(json.dumps({
             "message": "Can't get the blog from Database"
         }), status=500, mimetype="application/json")
-        self.DB_CONNECTION.update_one({"id" : str(self.USER_ID),"blogs.blog_id":str(self.BLOG_ID)}, {"$set" : {"blogs.$.delete_status" : "true"}})
+        self.DB_CONNECTION.update_one({"id" : str(self.USER_ID),"blogs.blog_name":str(self.BLOG_NAME)}, {"$set" : {"blogs.$.delete_status" : "true"}})
         
                 
 
