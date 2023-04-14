@@ -43,7 +43,7 @@ class readBlog:
         self.response = Response(json.dumps({
             "message": "Can't get the blog from Database"
         }), status=500, mimetype="application/json")
-        dictn = (self.DB_CONNECTION.find({"blogs": 1, "_id": 0}))
+        dictn = (self.DB_CONNECTION.find({"blogs.blog_name": str(self.BLOG_NAME) },{"blogs": 1, "_id": 0}))
         for i in dictn:
             for j in i["blogs"]:
                 if j["blog_name"] == str(self.BLOG_NAME) and j["delete_status"] == "false":
