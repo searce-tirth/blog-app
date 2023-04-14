@@ -49,13 +49,13 @@ class adddeletedBlog:
         dictn = (self.DB_CONNECTION.find({"id" : str(self.USER_ID)},{"blogs":1,"_id":0}))
         for i in dictn:
             for j in i["blogs"]:
-                if j["blog_id"] == (self.BLOG_NAME) and j["delete_status"] == "true":
+                if j["blog_name"] == (self.BLOG_NAME) and j["delete_status"] == "true":
                     self.CONTENT = j["content"]
                     self.CREATED_AT = str(j["created_at"])
                     self.add_deleted_blog()
                     return
                 
-                elif j["blog_id"] == (self.BLOG_NAME) and j["delete_status"] == "false":
+                elif j["blog_name"] == (self.BLOG_NAME) and j["delete_status"] == "false":
                     self.response = Response(json.dumps({
                     "message": "Blog is not deleted"
                     }), status=500, mimetype="application/json")
