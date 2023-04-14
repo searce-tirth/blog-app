@@ -7,8 +7,9 @@ from utilities.get_db_connection import get_db_connection
 class deleteBlog:
     def __init__(self, request_payload):
         self.request_payload = request_payload
+        self.USER_NAME = self.request_payload.get("user_name")
         self.USER_ID = self.request_payload.get("user_id")
-        self.BLOG_ID = self.request_payload.get("blog_id")
+        self.BLOG_ID = self.request_payload.get("blog_name")
         
 
         self.response = Response(
@@ -45,14 +46,14 @@ class deleteBlog:
         dictn = (self.DB_CONNECTION.find({"id" : str(self.USER_ID)},{"blogs":1,"_id":0}))
         for i in dictn:
             for j in i["blogs"]:
-                print(j["blog_id"])
-                if j["blog_id"] == (self.BLOG_ID) and j["delete_status"] == "false":
+                #print(j["blog_id"])
+                if j["blog_name"] == (self.BLOG_NAME) and j["delete_status"] == "false":
                     self.CONTENT = j["content"]
                     self.CREATED_AT = str(j["created_at"])
                     self.delete_blog()
                     return
                 
-                elif j["blog_id"] == (self.BLOG_ID) and j["delete_status"] == "true":
+                elif j["blog_id"] == (self.BLOG_NAME) and j["delete_status"] == "true":
                     self.response = Response(json.dumps({
                     "message": "Blog is removed by author"
                     }), status=500, mimetype="application/json")
