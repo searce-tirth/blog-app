@@ -62,7 +62,7 @@ class adddeletedBlog:
                     return
             else:
                 self.response = Response(json.dumps({
-                    "message": "Incorrect user ID"
+                    "message": "Unauthorized user ID"
                 }), status=500, mimetype="application/json")
                 break
             
