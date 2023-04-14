@@ -1,9 +1,100 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Example</title>
-    </head>
-    <body>
-        <p>This is sample page for testing the api run.</p>
-    </body>
+<head>
+  <title>Simple GUI to test Application</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    h1 {
+      color: #007bff;
+    }
+
+    form {
+      margin-top: 20px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 5px;
+      margin-bottom: 10px;
+    }
+
+    input[type="submit"] {
+      background-color: #007bff;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      cursor: pointer;
+    }
+
+    #response {
+      margin-top: 10px;
+      color: #007bff;
+    }
+
+    .error {
+      color: red;
+    }
+  </style>
+  <script>
+    function submitForm() {
+      // Get form data
+      var name = document.getElementById("name").value;
+      
+      // Create JSON object from form data
+      var data = {
+        name: name,
+      };
+      
+      // Convert JSON object to string
+      var jsonData = JSON.stringify(data);
+      
+      // Create XMLHttpRequest object
+      var xhr = new XMLHttpRequest();
+      
+      // Define the endpoint URL of your web API
+      var url = "https://blog-app-o7s6emedkq-uc.a.run.app/read_blog";
+      
+      // Open the connection
+      xhr.open("POST", url, true);
+      
+      // Set the request header for JSON data
+      xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+      
+      // Send the request with the form data
+      xhr.send(jsonData);
+      
+      // Handle the response
+      xhr.onload = function() {
+        if (xhr.status === 200) {
+          var response = JSON.parse(xhr.responseText);
+          var result = response.content; // Assuming the API returns a JSON object with a "result" property
+          document.getElementById("response").innerText = result;
+        } else {
+          document.getElementById("response").innerText = "Error: " + xhr.statusText;
+        }
+      };
+      
+      // Prevent form submission
+      return false;
+    }
+  </script>
+</head>
+<body>
+  <h1>Form Data to Web API Example</h1>
+  <form onsubmit="return submitForm()">
+    <label for="name">Name:</label>
+    <input type="text" id="name" required>
+    <br>
+    <input type="submit" value="Submit">
+  </form>
+  <p id="response">Response: </p>
+</body>
 </html>
