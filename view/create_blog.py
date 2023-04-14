@@ -12,6 +12,7 @@ class createBlog:
     def __init__(self, request_payload):
         self.request_payload = request_payload
         self.USER_ID = self.request_payload.get("id")
+        self.BLOG_NAME = self.request_payload.get("name")
         self.CONTENT = self.request_payload.get("content")
         
 
@@ -32,6 +33,7 @@ class createBlog:
             "data":{
                 "user_id": self.USER_ID,
                 "blog_id": self.ID,
+                "blog_name": self.BLOG_NAME,
                 "content": self.CONTENT
             },
         }), status=200, mimetype="application/json")
@@ -51,6 +53,7 @@ class createBlog:
         self.CREATED_AT = datetime.datetime.now()
         self.blog = {
             'blog_id': self.ID,
+            "blog_name": self.BLOG_NAME,
             "content": self.CONTENT,
             "created_at": self.CREATED_AT,
             "delete_status" : "false",
