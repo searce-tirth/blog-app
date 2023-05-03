@@ -5,11 +5,11 @@ from utilities.get_db_connection import get_db_connection
 
 
 class deleteBlog:
-    def __init__(self, request_payload):
-        self.request_payload = request_payload
-        self.USER_NAME = self.request_payload.get("user_name")
-        self.USER_ID = self.request_payload.get("user_id")
-        self.BLOG_NAME = self.request_payload.get("blog_name")
+    def __init__(self, uid,uname,bname):
+        
+        self.USER_NAME = uname
+        self.USER_ID = uid
+        self.BLOG_NAME = bname
         
 
         self.response = Response(

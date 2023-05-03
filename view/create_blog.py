@@ -9,11 +9,11 @@ import random
 
 
 class createBlog:
-    def __init__(self, request_payload):
-        self.request_payload = request_payload
-        self.USER_ID = self.request_payload.get("id")
-        self.BLOG_NAME = self.request_payload.get("name")
-        self.CONTENT = self.request_payload.get("content")
+    def __init__(self, id,name,content):
+        
+        self.USER_ID = id
+        self.BLOG_NAME = name
+        self.CONTENT = content
         
 
         self.response = Response(

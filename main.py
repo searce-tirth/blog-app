@@ -14,18 +14,16 @@ app.secret_key = 'some_secret_key'
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
 
 
-def clearfunc(function):
+def clearfunc():
     #Global variables
     
     app.config['response']=""
     app.config['status'] = ""
     
-    app.config['function'] = function
-    
     
     
 #modify app.config for first time
-clearfunc("")
+clearfunc()
 
 @app.route("/", methods=['GET'])
 def test():
@@ -34,41 +32,60 @@ def test():
 
 @app.route("/create_user", methods=['POST'])
 def create_user():
-    request_payload = request.form.to_dict()
-    process = createUser(request_payload=jsonify(request_payload))
-    return process.response
+    clearfunc()
+    name = request.form["name"]
+    dob = request.form["dob"]
+    gender = request.form["gender"]
+    process = createUser(name,dob,gender)
+    app.config['response']=process.response
+    app.config['status']="Completed"
+    return '',204
 
 
 @app.route("/create_blog", methods=["POST"])
 def create_blog():
-    request_payload = request.form.to_dict()
-    process = createBlog(request_payload=jsonify(request_payload))
-    return process.response
+    clearfunc()
+    id = request.form["id"]
+    name = request.form["name"]
+    content = request.form["content"]
+    process = createBlog(id,name,content)
+    app.config['response']=process.response
+    app.config['status']="Completed"
+    return '',204
 
 
 @app.route("/read_blog", methods=["POST"])
 def read_blog():
-    clearfunc("readBlog")
-    request_payload = request.form["blogName"]
-    process = readBlog(request_payload)
+    clearfunc()
+    name = request.form["blogName"]
+    process = readBlog(name)
     app.config['response']=process.response
     app.config['status']="Completed"
-    print(type(app.config['response']))
     return '',204
 
 
 @app.route("/delete_blog", methods=["POST"])
 def delete_blog():
-    request_payload = request.form["name"]
-    process = deleteBlog(request_payload=request_payload)
-    return process.response
+    clearfunc()
+    uname = request.form["uname"]
+    uid = request.form["uid"]
+    bname = request.form["bname"]
+    process = deleteBlog(uid,uname,bname)
+    app.config['response']=process.response
+    app.config['status']="Completed"
+    return '',204
 
 
 @app.route("/add_deleted_blog", methods=["POST"])
 def add_deleted_blog():
-    request_payload = request.form.to_dict()
-    process = adddeletedBlog(request_payload=jsonify(request_payload))
-    return process.response
+    clearfunc()
+    uname = request.form["uname"]
+    uid = request.form["uid"]
+    bname = request.form["bname"]
+    process = adddeletedBlog(uid,uname,bname)
+    app.config['response']=process.response
+    app.config['status']="Completed"
+    return '',204
 
 
 @app.route("/process", methods=["GET"])
@@ -76,7 +93,7 @@ def process():
     while(app.config['status'] != "Completed"):
         continue
     
-    response = app.test_client().get('/read_blog')
+    response = app.config['response']
     json_data = json.loads(response.get_data())
     print(json_data)
     

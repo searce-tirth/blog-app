@@ -9,11 +9,11 @@ import random
 
 
 class createUser:
-    def __init__(self, request_payload):
-        self.request_payload = request_payload
-        self.NAME = self.request_payload.get("name")
-        self.DOB = self.request_payload.get("dob")
-        self.GENDER = self.request_payload.get("gender")
+    def __init__(self, name,dob,gender):
+        
+        self.NAME = name
+        self.DOB = dob
+        self.GENDER = gender
         self.response = Response(
             json.dumps({
                 "message":"Internal Server Error"

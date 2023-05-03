@@ -157,48 +157,74 @@
     <h2>Welcome to our blog app!</h2>
     <p>This app allows the user to create blogs, read blogs and delete blogs. In case if you wish to recover a deleted
       blog then you will be able to do so</p>
-    <form id="createUserForm" action="create_user" method="POST" enctype="multipart/form-data">
+    <form id="createUserForm" action="/create_user" method="POST" enctype="multipart/form-data" onsubmit="processing();">
       <h2>Create User</h2>
-      <label for="username">Username:</label>
-      <input type="text" id="username" name="username">
-      <label for="password">Password:</label>
-      <input type="password" id="password" name="password">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name">
+      <label for="dob">DoB:</label>
+      <input type="text" id="dob" name="dob">
+      <label for="gender">Gender:</label>
+      <input type="text" id="gender" name="gender">
       <input type="submit" value="Create User">
     </form>
 
-    <form id="createBlogForm" action="create_blog" method="POST" enctype="multipart/form-data">
+    <form id="createBlogForm" action="/create_blog" method="POST" enctype="multipart/form-data" onsubmit="processing();">
       <h2>Create Blog</h2>
-      <label for="title">Title:</label>
-      <input type="text" id="title" name="title">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name">
       <label for="content">Content:</label>
-      <textarea id="content" name="content"></textarea>
+      <input type="text" id="content" name="content">
+      <label for="id">User ID:</label>
+      <input type="text" id="id" name="id">
       <input type="submit" value="Create Blog">
     </form>
 
-    <form id="deleteBlogForm" action="delete_blog" method="POST" enctype="multipart/form-data">
+    <form id="deleteBlogForm" action="/delete_blog" method="POST" enctype="multipart/form-data" onsubmit="processing();">
       <h2>Delete Blog</h2>
-      <label for="blogId">Blog ID:</label>
-      <input type="text" id="blogId" name="blogId">
+      <label for="uname">User Name:</label>
+      <input type="text" id="uname" name="uname">
+      <label for="uid">User Id:</label>
+      <input type="text" id="uid" name="uid">
+      <label for="bname">Blog Name:</label>
+      <input type="text" id="bname" name="bname">
       <input type="submit" value="Delete Blog">
     </form>
 
     <form id="readBlogForm" action="/read_blog" method="POST" enctype="multipart/form-data" onsubmit="processing();">
       <h2>Read Blog</h2>
-      <label for="blogId">Blog ID:</label>
+      <label for="blogName">Blog Name:</label>
       <input type="text" id="blogName" name="blogName">
       <input type="submit" value="Read Blog">
     </form>
 
-    <form id="recoverBlogForm" action="add_deleted_blog" method="POST" enctype="multipart/form-data">
+    <form id="recoverBlogForm" action="/add_deleted_blog" method="POST" enctype="multipart/form-data" onsubmit="processing();">
       <h2>Recover Blog</h2>
-      <label for="blogId">Blog ID:</label>
-      <input type="text" id="blogId" name="blogId">
+      <label for="uname">User Name:</label>
+      <input type="text" id="uname" name="uname">
+      <label for="uid">User Id:</label>
+      <input type="text" id="uid" name="uid">
+      <label for="bname">Blog Name:</label>
+      <input type="text" id="bname" name="bname">
       <input type="submit" value="Recover Blog">
     </form>
   </section>
   <footer>
     <p>&copy; Searce Logistics</p>
   </footer>
+  <script>
+    function processing() {
+      fetch(`/process`)
+        .then(response => response.json())
+        .then(data => {
+          // Handle the response data here
+          console.log(data);
+        })
+        .catch(error => {
+          // Handle any errors here
+          console.alert(error);
+        });
+    }
+  </script>
 </body>
 
 </html>
