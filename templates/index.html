@@ -157,7 +157,7 @@
     <h2>Welcome to our blog app!</h2>
     <p>This app allows the user to create blogs, read blogs and delete blogs. In case if you wish to recover a deleted
       blog then you will be able to do so</p>
-    <form id="createUserForm" action="create_user">
+    <form id="createUserForm" action="create_user" method="POST">
       <h2>Create User</h2>
       <label for="username">Username:</label>
       <input type="text" id="username" name="username">
@@ -166,7 +166,7 @@
       <input type="submit" value="Create User">
     </form>
 
-    <form id="createBlogForm" action="create_blog">
+    <form id="createBlogForm" action="create_blog" method="POST">
       <h2>Create Blog</h2>
       <label for="title">Title:</label>
       <input type="text" id="title" name="title">
@@ -175,21 +175,21 @@
       <input type="submit" value="Create Blog">
     </form>
 
-    <form id="deleteBlogForm" action="delete_blog">
+    <form id="deleteBlogForm" action="delete_blog" method="POST">
       <h2>Delete Blog</h2>
       <label for="blogId">Blog ID:</label>
       <input type="text" id="blogId" name="blogId">
       <input type="submit" value="Delete Blog">
     </form>
 
-    <form id="readBlogForm" action="/read_blog">
+    <form id="readBlogForm" action="/read_blog" method="POST">
       <h2>Read Blog</h2>
       <label for="blogId">Blog ID:</label>
       <input type="text" id="blogId" name="blogId">
       <input type="submit" value="Read Blog">
     </form>
 
-    <form id="recoverBlogForm" action="add_deleted_blog">
+    <form id="recoverBlogForm" action="add_deleted_blog" method="POST">
       <h2>Recover Blog</h2>
       <label for="blogId">Blog ID:</label>
       <input type="text" id="blogId" name="blogId">
