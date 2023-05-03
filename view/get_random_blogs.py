@@ -1,12 +1,14 @@
 import json
+import random
 from flask import Response
 from utilities.get_db_connection import get_db_connection
 
-
-class readBlog:
-    def __init__(self, name):
+list1=[]
+class getrandomBlogs:
+    def __init__(self):
         
-        self.BLOG_NAME = name
+        
+        
         self.response = Response(
             json.dumps({
                 "message": "Internal Server Error"
@@ -16,6 +18,7 @@ class readBlog:
         self.main()
 
     def main(self):
+        list1.clear()
         self.get_db_connection()
         self.read_from_db()
 
@@ -23,12 +26,7 @@ class readBlog:
         try:
             self.response = Response(json.dumps({
                 "message": "Read Blog",
-                "data": {
-                    "blog_name": self.BLOG_NAME,
-                    "content": self.CONTENT,
-                    "createdAt": self.CREATED_AT,
-                    "views": self.VIEW
-                },
+                "data": list1,
             }), status=200, mimetype="application/json")
         except:
             pass
@@ -43,17 +41,32 @@ class readBlog:
         self.response = Response(json.dumps({
             "message": "Can't get the blog from Database"
         }), status=500, mimetype="application/json")
-        dictn = (self.DB_CONNECTION.find({"blogs.blog_name": str(self.BLOG_NAME) },{"blogs": 1, "_id": 0}))
-        print(type(dictn),len(dictn))
+        num_docs = self.DB_CONNECTION.count_documents({})
+
+        # generate a list of random indices
+        rand_indices = random.sample(range(num_docs), k=20)
+        dictn = (self.DB_CONNECTION.aggregate([{ '$sample': { 'size': 20 }}]))
+        print(type(dictn))
+        
+        c=0
         for i in dictn:
             for j in i["blogs"]:
-                if j["blog_name"] == str(self.BLOG_NAME) and j["delete_status"] == "false":
+                if j["delete_status"] == "false":
+                    self.BLOG_NAME = j["blog_name"]
                     self.CONTENT = j["content"]
                     self.CREATED_AT = str(j["created_at"])
                     self.VIEW = j["views"]
                     self.add_viewer_count()
+                    list1.append({"data": {
+                    "blog_name": self.BLOG_NAME,
+                    "content": self.CONTENT,
+                    "createdAt": self.CREATED_AT,
+                    "views": self.VIEW
+                }})
+                    
                     break
                 elif j["delete_status"] == "true":
+                    print("this is deleted")
                     self.response = Response(json.dumps({
                         "message": "Blog is removed by author"
                     }), status=500, mimetype="application/json")
@@ -63,6 +76,7 @@ class readBlog:
                     "message": "Blog doesn't exist"
                 }), status=500, mimetype="application/json")
                 break
+            
         else:
             self.response = Response(json.dumps({
                 "message": "User doesn't exist"

@@ -224,6 +224,19 @@
           alert(error);
         });
     }
+    function sample() {
+      fetch(`/sample`)
+        .then(response => response.json())
+        .then(data => {
+          // Handle the response data here
+          console.log(data);
+        })
+        .catch(error => {
+          // Handle any errors here
+          alert(error);
+        });
+    }
+    sample();
   </script>
 </body>
 

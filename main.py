@@ -7,18 +7,20 @@ from view.create_user import createUser
 from view.read_blog import readBlog
 from view.delete_blog import deleteBlog
 from view.add_deleted_blog import adddeletedBlog
+from view.get_random_blogs import getrandomBlogs
 
 app = Flask(__name__)
 CORS(app)
 app.secret_key = 'some_secret_key'
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
 
-
+app.config['random'] = ""
 def clearfunc():
     #Global variables
     
     app.config['response']=""
     app.config['status'] = ""
+    
     
     
     
@@ -95,6 +97,16 @@ def process():
     
     response = app.config['response']
     json_data = json.loads(response.get_data())
+    print(json_data)
+    
+    return jsonify(json_data)
+
+@app.route("/sample", methods=["GET"])
+def sample():
+    app.config['random']=""
+    process = getrandomBlogs()
+    app.config['random'] = process.response
+    json_data = json.loads(app.config['random'].get_data())
     print(json_data)
     
     return jsonify(json_data)
