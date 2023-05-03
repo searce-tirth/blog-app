@@ -10,7 +10,22 @@ from view.add_deleted_blog import adddeletedBlog
 
 app = Flask(__name__)
 CORS(app)
+app.secret_key = 'some_secret_key'
+app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
 
+
+def clearfunc(function):
+    #Global variables
+    
+    app.config['response']=""
+    app.config['status'] = ""
+    
+    app.config['function'] = function
+    
+    
+    
+#modify app.config for first time
+clearfunc("")
 
 @app.route("/", methods=['GET'])
 def test():
@@ -33,15 +48,19 @@ def create_blog():
 
 @app.route("/read_blog", methods=["POST"])
 def read_blog():
-    request_payload = request.form.to_dict()
-    process = readBlog(request_payload=jsonify(request_payload))
-    return process.response
+    clearfunc("readBlog")
+    request_payload = request.form["blogName"]
+    process = readBlog(request_payload)
+    app.config['response']=process.response
+    app.config['status']="Completed"
+    print(type(app.config['response']))
+    return '',204
 
 
 @app.route("/delete_blog", methods=["POST"])
 def delete_blog():
-    request_payload = request.form.to_dict()
-    process = deleteBlog(request_payload=jsonify(request_payload))
+    request_payload = request.form["name"]
+    process = deleteBlog(request_payload=request_payload)
     return process.response
 
 
@@ -51,6 +70,17 @@ def add_deleted_blog():
     process = adddeletedBlog(request_payload=jsonify(request_payload))
     return process.response
 
+
+@app.route("/process", methods=["GET"])
+def process():
+    while(app.config['status'] != "Completed"):
+        continue
+    
+    response = app.test_client().get('/read_blog')
+    json_data = json.loads(response.get_data())
+    print(json_data)
+    
+    return jsonify(json_data)
 
 if __name__ == '__main__':
     app.run(port=80, host="0.0.0.0", debug=True)

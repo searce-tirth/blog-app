@@ -182,10 +182,10 @@
       <input type="submit" value="Delete Blog">
     </form>
 
-    <form id="readBlogForm" action="/read_blog" method="POST" enctype="multipart/form-data">
+    <form id="readBlogForm" action="/read_blog" method="POST" enctype="multipart/form-data" onsubmit="processing();">
       <h2>Read Blog</h2>
       <label for="blogId">Blog ID:</label>
-      <input type="text" id="blogId" name="blogId">
+      <input type="text" id="blogName" name="blogName">
       <input type="submit" value="Read Blog">
     </form>
 

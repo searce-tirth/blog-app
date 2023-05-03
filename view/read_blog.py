@@ -4,9 +4,9 @@ from utilities.get_db_connection import get_db_connection
 
 
 class readBlog:
-    def __init__(self, request_payload):
-        self.request_payload = request_payload
-        self.BLOG_NAME = self.request_payload.get("name")
+    def __init__(self, name):
+        
+        self.BLOG_NAME = name
         self.response = Response(
             json.dumps({
                 "message": "Internal Server Error"
