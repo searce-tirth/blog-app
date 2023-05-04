@@ -2,216 +2,314 @@
 <html>
 
 <head>
-  <title>Blog App</title>
-  <style>
-    body {
-      background-color: #eecfa9;
-      font-family: 'Arial', sans-serif;
-      margin: 0;
-      padding: 0;
-    }
+    <title>About Us</title>
+    <style>
+        /* CSS Styles */
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: #444;
+            width:100%;
+            padding:0px;
+        }
 
-    header {
-      background-color: #e29353a3;
-      color: #fff;
-      padding: 25px;
-      text-align: center;
-    }
+        header {
+            color: #fff;
+            
+            text-align: center;
+            background-color: #6b89ae;
+            color: #fff;
+            display: auto;
+            width: auto;
+            justify-content: space-between;
+            
+        }
 
-    h1 {
-      font-size: 48px;
-      margin: 0;
-    }
+        h1 {
+            margin: 0;
+            font-weight: 500;
+            font-size: 48px;
+        }
 
-    nav {
-      background-color: #9F8170;
-      color: #fff;
-      display: flex;
-      justify-content: space-between;
-      padding: 1px;
-    }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
 
-    ul {
-      display: flex;
-      list-style-type: none;
-      margin: 0;
-      padding: 0;
-    }
+        p {
+            line-height: 1.8;
+            font-size: 18px;
+        }
 
-    li {
-      margin: 0 70px;
-    }
+        img {
+            max-width: 100%;
+        }
 
-    a {
-      color: #fff;
-      text-decoration: none;
-    }
+        .team {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
 
-    a:hover {
-      text-decoration: underline;
-    }
+        .member {
+            width: 350px;
+            margin: 30px;
+            padding: 20px;
+            box-sizing: border-box;
+            background-color: #6b89ae;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            transition: transform 0.3s ease-in-out;
+            color: rgb(255, 255, 255);
+        }
 
-    section {
-      margin: 20px;
-      text-align: center;
-    }
+        .member:hover {
+            transform: translateY(-10px);
+        }
 
-    footer {
-      background-color: #e29353a3;
-      color: #fff;
-      padding: 10px;
-      text-align: center;
-    }
+        .member img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
 
-    form {
-      display: none;
-      margin: 20px auto;
-      padding: 20px;
-      border: 1px solid #ccc;
-      background-color: #e29353a3;
-      box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
-      max-width: 600px;
-    }
+        .member h3 {
+            margin-top: 20px;
+            font-size: 24px;
+            font-weight: 700;
+        }
 
-    label {
-      display: block;
-      margin-bottom: 10px;
-      color: #333;
-      font-size: 18px;
-    }
+        .member p {
+            margin-top: 10px;
+            font-size: 18px;
+            font-weight: 500;
+        }
 
-    button {
-      margin: 20px auto;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 0px;
-      background-color: transparent;
-      color: #fff;
-      font-size: 18px;
-      cursor: pointer;
-      
-      transition: background-color 0.3s ease;
-    }
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            font-size: 14px;
+            width: auto;
+        }
 
-    button:hover {
-      background-color: #b79481;
-    }
+        .i {
+            display: block;
+            padding-top: 2%;
+            width: 7%;
+            height: 7%;
+            float: left;
+            padding-left: 1%;
+        }
 
-    input[type="text"],
-    input[type="password"],
-    textarea {
-      display: block;
-      width: 100%;
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      font-size: 18px;
-      color: #333;
-    }
+        button {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 20%;
+            color: #fff;
+            background-color: #6b89ae;
+            border-radius: 10px;
+            font-size: large;
+        }
 
-    input[type="submit"] {
-      display: block;
-      margin-top: 20px;
-      padding: 10px;
-      border: none;
-      border-radius: 5px;
-      background-color: #9F8170;
-      color: #fff;
-      font-size: 18px;
-      cursor: pointer;
-      box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
-      transition: background-color 0.3s ease;
-    }
+        .btn {
+            margin: 20px auto;
+            padding: 2px 30px;
+            border: none;
+            border-radius: 0px;
+            background-color: transparent;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
 
-    input[type="submit"]:hover {
-      background-color: #9F8170;
-    }
-  </style>
-  <script>
-    function showForm(formId) {
-      document.getElementById('createUserForm').style.display = "none";
-      document.getElementById('createBlogForm').style.display = "none";
-      document.getElementById('readBlogForm').style.display = "none";
-      document.getElementById('deleteBlogForm').style.display = "none";
-      document.getElementById('recoverBlogForm').style.display = "none";
-      var form = document.getElementById(formId);
-      form.style.display = "block";
-    }
-  </script>
+            transition: background-color 0.3s ease;
+        }
+
+        ul {
+            display: flex;
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        li {
+            margin: 0 60px;
+        }
+
+        footer {
+            background-color: #6b89ae;
+            color: #fff;
+            text-align: center;
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 2%;
+        }
+
+        form {
+            display: none;
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            background-color: #6b89ae;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+            max-width: 600px;
+        }
+
+        h2 {
+            color: #fff;
+        }
+
+        label {
+            display: block;
+            color: rgb(255, 255, 255);
+            font-size: 18px;
+        }
+
+        button {
+            margin: 20px auto;
+            padding: 2px 30px;
+            border: none;
+            border-radius: 0px;
+            background-color: transparent;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+            position: center;
+
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="text"],
+        input[type="password"],
+        textarea {
+            display: block;
+            width: 100%;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 18px;
+            color: rgb(0, 0, 0);
+            background-color: #a8bbd3;
+        }
+
+        input[type="submit"] {
+            display: block;
+            margin-top: 20px;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #5d7aab;
+            color: #fff;
+            font-size: 18px;
+            cursor: pointer;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #4c7092;
+        }
+    </style>
 </head>
 
-<body>
-  <header>
-    <h1>BLOG APP</h1>
-  </header>
-  <nav>
-    <ul>
-      <li><button onclick="showForm('createUserForm')">Create User</button></li>
-      <li><button onclick="showForm('createBlogForm')">Create Blog</button></li>
-      <li><button onclick="showForm('readBlogForm')">Read Blog</button></li>
-      <li><button onclick="showForm('deleteBlogForm')">Delete Blog</button></li>
-      <li><button onclick="showForm('recoverBlogForm')">Recover Blog</button></li>
-    </ul>
-  </nav>
-  <section>
-    <h2>Welcome to our blog app!</h2>
-    <p>This app allows the user to create blogs, read blogs and delete blogs. In case if you wish to recover a deleted
-      blog then you will be able to do so</p>
-    <form id="createUserForm" action="/create_user" method="POST" enctype="multipart/form-data" onsubmit="processing();">
-      <h2>Create User</h2>
-      <label for="name">Name:</label>
-      <input type="text" id="name" name="name">
-      <label for="dob">DoB:</label>
-      <input type="text" id="dob" name="dob">
-      <label for="gender">Gender:</label>
-      <input type="text" id="gender" name="gender">
-      <input type="submit" value="Create User">
-    </form>
+<body style="margin:0%">
+    <header>
+        <img src="./static/assets/images/img.png" alt="Logo" class="i">
+        <ul>
+            <li><button class="btn" onclick="hideForm()">Home</button></li>
+            <li><button class="btn" onclick="showForm('createUserForm')">Create User</button></li>
+            <li><button class="btn" onclick="showForm('createBlogForm')">Create Blog</button></li>
+            <li><button class="btn" onclick="showForm('readBlogForm')">Read Blog</button></li>
+            <li><button class="btn" onclick="showForm('deleteBlogForm')">Delete Blog</button></li>
+            <li><button class="btn" onclick="showForm('recoverBlogForm')">Recover Blog</button></li>
+        </ul>
+    </header>
+    <section>
+        <h3>Welcome to our blog app!</h3>
+        <p>This app allows the user to create blogs, read blogs and delete blogs. In case if you wish to recover a
+            deleted
+            blog then you will be able to do so</p>
+        <form id="createUserForm" action="create_user" method="POST" enctype="multipart/form-data" onsubmit="processing();">
+            <h2>Create User</h2>
+	        <label for="name">Name:</label>
+            <input type="text" id="name" name="name">
+            <label for="dob">DoB:</label>
+            <input type="text" id="dob" name="dob">
+            <label for="gender">Gender:</label>
+            <input type="text" id="gender" name="gender">
+            <input type="submit" value="Create User">
+        </form>
 
-    <form id="createBlogForm" action="/create_blog" method="POST" enctype="multipart/form-data" onsubmit="processing();">
-      <h2>Create Blog</h2>
-      <label for="name">Name:</label>
-      <input type="text" id="name" name="name">
-      <label for="content">Content:</label>
-      <input type="text" id="content" name="content">
-      <label for="id">User ID:</label>
-      <input type="text" id="id" name="id">
-      <input type="submit" value="Create Blog">
-    </form>
+        <form id="createBlogForm" action="create_blog" method="POST" enctype="multipart/form-data" onsubmit="processing();">
+            <h2>Create Blog</h2>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name">
+            <label for="content">Content:</label>
+            <input type="text" id="content" name="content">
+            <label for="id">User ID:</label>
+            <input type="text" id="id" name="id">
+            <input type="submit" value="Create Blog">
+        </form>
 
-    <form id="deleteBlogForm" action="/delete_blog" method="POST" enctype="multipart/form-data" onsubmit="processing();">
-      <h2>Delete Blog</h2>
-      <label for="uname">User Name:</label>
-      <input type="text" id="uname" name="uname">
-      <label for="uid">User Id:</label>
-      <input type="text" id="uid" name="uid">
-      <label for="bname">Blog Name:</label>
-      <input type="text" id="bname" name="bname">
-      <input type="submit" value="Delete Blog">
-    </form>
+        <form id="deleteBlogForm" action="delete_blog" method="POST" enctype="multipart/form-data" onsubmit="processing();">
+            <h2>Delete Blog</h2>
+            <label for="uname">User Name:</label>
+            <input type="text" id="uname" name="uname">
+            <label for="uid">User Id:</label>
+            <input type="text" id="uid" name="uid">
+            <label for="bname">Blog Name:</label>
+            <input type="text" id="bname" name="bname">
+            <input type="submit" value="Delete Blog">
+        </form>
 
-    <form id="readBlogForm" action="/read_blog" method="POST" enctype="multipart/form-data" onsubmit="processing();">
-      <h2>Read Blog</h2>
-      <label for="blogName">Blog Name:</label>
-      <input type="text" id="blogName" name="blogName">
-      <input type="submit" value="Read Blog">
-    </form>
+        <form id="readBlogForm" action="/read_blog" method="POST" enctype="multipart/form-data" onsubmit="processing();">
+            <h2>Read Blog</h2>
+            <label for="blogName">Blog Name:</label>
+            <input type="text" id="blogName" name="blogName">
+            <input type="submit" value="Read Blog">
+        </form>
 
-    <form id="recoverBlogForm" action="/add_deleted_blog" method="POST" enctype="multipart/form-data" onsubmit="processing();">
-      <h2>Recover Blog</h2>
-      <label for="uname">User Name:</label>
-      <input type="text" id="uname" name="uname">
-      <label for="uid">User Id:</label>
-      <input type="text" id="uid" name="uid">
-      <label for="bname">Blog Name:</label>
-      <input type="text" id="bname" name="bname">
-      <input type="submit" value="Recover Blog">
-    </form>
-  </section>
-  <footer>
-    <p>&copy; Searce Logistics</p>
-  </footer>
-  <script>
+        <form id="recoverBlogForm" action="add_deleted_blog" method="POST" enctype="multipart/form-data" onsubmit="processing();">
+            <h2>Recover Blog</h2>
+            <label for="uname">User Name:</label>
+            <input type="text" id="uname" name="uname">
+            <label for="uid">User Id:</label>
+            <input type="text" id="uid" name="uid">
+            <label for="bname">Blog Name:</label>
+            <input type="text" id="bname" name="bname">
+            <input type="submit" value="Recover Blog">
+        </form>
+    </section>
+    <div class="container">
+        <div class="team" id="team">
+            
+        </div>
+    </div>
+</body>
+<script>
+    function showForm(formId) {
+        document.getElementById('createUserForm').style.display = "none";
+        document.getElementById('createBlogForm').style.display = "none";
+        document.getElementById('readBlogForm').style.display = "none";
+        document.getElementById('deleteBlogForm').style.display = "none";
+        document.getElementById('recoverBlogForm').style.display = "none";
+        var form = document.getElementById(formId);
+        form.style.display = "block";
+    }
+    function hideForm() {
+        document.getElementById('createUserForm').style.display = "none";
+        document.getElementById('createBlogForm').style.display = "none";
+        document.getElementById('readBlogForm').style.display = "none";
+        document.getElementById('deleteBlogForm').style.display = "none";
+        document.getElementById('recoverBlogForm').style.display = "none";
+    }
+</script>
+<script>
     function processing() {
       fetch(`/process`)
         .then(response => response.json())
@@ -229,7 +327,21 @@
         .then(response => response.json())
         .then(data => {
           // Handle the response data here
-          console.log(data);
+          if(data!=="undefined"){
+        var teamdiv = document.getElementById("team");
+        for(var i = 0;i<data["data"].length;i++){
+          console.log(data["data"].length);
+          const el = document.createElement('div');
+        el.classList.add('member');
+        const el1 = document.createElement('h3');
+        el1.innerHTML = data["data"][i]["data"]["blog_name"];
+        const el2 = document.createElement('p');
+        el2.innerHTML = data["data"][i]["data"]["content"];
+        el.append(el1);
+        el.append(el2);
+        teamdiv.append(el);}
+        
+        }
         })
         .catch(error => {
           // Handle any errors here
@@ -238,6 +350,8 @@
     }
     sample();
   </script>
-</body>
+<footer>
+    &copy;Searce Logistics
+</footer>
 
 </html>

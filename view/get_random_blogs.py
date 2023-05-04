@@ -44,8 +44,8 @@ class getrandomBlogs:
         num_docs = self.DB_CONNECTION.count_documents({})
 
         # generate a list of random indices
-        rand_indices = random.sample(range(num_docs), k=20)
-        dictn = (self.DB_CONNECTION.aggregate([{ '$sample': { 'size': 20 }}]))
+        rand_indices = random.sample(range(num_docs), k=10)
+        dictn = (self.DB_CONNECTION.aggregate([{ '$sample': { 'size': 10 }}]))
         print(type(dictn))
         
         c=0
