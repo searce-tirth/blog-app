@@ -316,6 +316,16 @@
         .then(data => {
           // Handle the response data here
           console.log(data);
+          var teamdiv = document.getElementById("team");
+          const el = document.createElement('div');
+          el.classList.add('member');
+          const el1 = document.createElement('h3');
+        el1.innerHTML = data["data"][i]["data"]["blog_name"];
+        const el2 = document.createElement('p');
+        el2.innerHTML = data["data"][i]["data"]["content"];
+        el.append(el1);
+        el.append(el2);
+        teamdiv.append(el);
         })
         .catch(error => {
           // Handle any errors here
