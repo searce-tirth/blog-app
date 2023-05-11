@@ -320,9 +320,9 @@
           const el = document.createElement('div');
           el.classList.add('member');
           const el1 = document.createElement('h3');
-        el1.innerHTML = data["data"][i]["data"]["blog_name"];
+        el1.innerHTML = data["data"][0]["data"]["blog_name"];
         const el2 = document.createElement('p');
-        el2.innerHTML = data["data"][i]["data"]["content"];
+        el2.innerHTML = data["data"][0]["data"]["content"];
         el.append(el1);
         el.append(el2);
         teamdiv.append(el);
