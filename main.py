@@ -98,7 +98,7 @@ def process():
     response = app.config['response']
     json_data = json.loads(response.get_data())
     print(json_data)
-    
+    clearfunc()
     return jsonify(json_data)
 
 @app.route("/sample", methods=["GET"])
