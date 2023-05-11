@@ -320,11 +320,14 @@
           const el = document.createElement('div');
           el.classList.add('member');
           const el1 = document.createElement('h3');
-        el1.innerHTML = data["data"][0]["data"]["blog_name"];
-        const el2 = document.createElement('p');
-        el2.innerHTML = data["data"][0]["data"]["content"];
+        el1.innerHTML = data["data"]["data"]["blog_name"];
+	const el2 = document.createElement('p');
+        el2.innerHTML = data["data"]["data"]["createdAt"] + "    Views: " + data["data"]["data"]["views"] ;
+	const el3 = document.createElement('p');
+        el4.innerHTML = data["data"]["data"]["content"];
         el.append(el1);
         el.append(el2);
+	el.append(el3);
         teamdiv.append(el);
         })
         .catch(error => {
@@ -345,10 +348,13 @@
         el.classList.add('member');
         const el1 = document.createElement('h3');
         el1.innerHTML = data["data"][i]["data"]["blog_name"];
-        const el2 = document.createElement('p');
+	const el2 = document.createElement('p');
+        el2.innerHTML = data["data"][i]["data"]["createdAt"] + "    Views: " + data["data"][i]["data"]["views"] ;
+        const el3 = document.createElement('p');
         el2.innerHTML = data["data"][i]["data"]["content"];
         el.append(el1);
         el.append(el2);
+	el.append(el3);
         teamdiv.append(el);}
         
         }
