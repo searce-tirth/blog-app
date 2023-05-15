@@ -316,7 +316,6 @@
         .then(data => {
           // Handle the response data here
           console.log(data);
-	  var cont = document.getElementById("cont");
           var teamdiv = document.getElementById("team");
           const el = document.createElement('div');
           el.classList.add('member');
@@ -330,8 +329,6 @@
         el.append(el2);
 	el.append(el3);
         teamdiv.append(el);
-	cont.innerHTML = "";
-	cont.append(teamdiv);
         })
         .catch(error => {
           // Handle any errors here
