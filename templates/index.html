@@ -320,14 +320,14 @@
           const el = document.createElement('div');
           el.classList.add('member');
           const el1 = document.createElement('h3');
-        el1.innerHTML = data["data"]["blog_name"];
-	const el2 = document.createElement('p');
-        el2.innerHTML = data["data"]["createdAt"] + "    Views: " + data["data"]["views"] ;
-	const el3 = document.createElement('p');
-        el3.innerHTML = data["data"]["data"]["content"];
-        el.append(el1);
-        el.append(el2);
-	el.append(el3);
+        el1.innerHTML = data["data"];
+// 	const el2 = document.createElement('p');
+//         el2.innerHTML = data["data"]["createdAt"] + "    Views: " + data["data"]["views"] ;
+// 	const el3 = document.createElement('p');
+//         el3.innerHTML = data["data"]["data"]["content"];
+//         el.append(el1);
+//         el.append(el2);
+	el.append(el1);
         teamdiv.append(el);
         })
         .catch(error => {
@@ -347,7 +347,7 @@
           const el = document.createElement('div');
         el.classList.add('member');
         const el1 = document.createElement('h3');
-        el1.innerHTML = data["data"][i]["data"]["blog_name"];
+        el1.innerHTML = data["data"][i]["data"];
 	const el2 = document.createElement('p');
         el2.innerHTML = data["data"][i]["data"]["createdAt"] + "    Views: " + data["data"][i]["data"]["views"] ;
         const el3 = document.createElement('p');
