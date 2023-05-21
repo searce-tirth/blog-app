@@ -19,6 +19,7 @@ def clearfunc():
     #Global variables
     
     app.config['response']=""
+    app.config['code']=""
     app.config['status'] = ""
     
     
@@ -40,6 +41,7 @@ def create_user():
     gender = request.form["gender"]
     process = createUser(name,dob,gender)
     app.config['response']=process.response
+    app.config['code']=0
     app.config['status']="Completed"
     return '',204
 
@@ -52,6 +54,7 @@ def create_blog():
     content = request.form["content"]
     process = createBlog(id,name,content)
     app.config['response']=process.response
+    app.config['code']=1
     app.config['status']="Completed"
     return '',204
 
@@ -62,6 +65,7 @@ def read_blog():
     name = request.form["blogName"]
     process = readBlog(name)
     app.config['response']=process.response
+    app.config['code']=2
     app.config['status']="Completed"
     return '',204
 
@@ -74,6 +78,7 @@ def delete_blog():
     bname = request.form["bname"]
     process = deleteBlog(uid,uname,bname)
     app.config['response']=process.response
+    app.config['code']=3
     app.config['status']="Completed"
     return '',204
 
@@ -86,6 +91,7 @@ def add_deleted_blog():
     bname = request.form["bname"]
     process = adddeletedBlog(uid,uname,bname)
     app.config['response']=process.response
+    app.config['code']=4
     app.config['status']="Completed"
     return '',204
 
@@ -98,6 +104,8 @@ def process():
     response = app.config['response']
     json_data = json.loads(response.get_data())
     print(json_data)
+    newData = {"code": app.config['code']}
+    json_data.update(newData)
     clearfunc()
     return jsonify(json_data)
 
