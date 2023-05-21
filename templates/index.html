@@ -316,6 +316,23 @@
         .then(data => {
           // Handle the response data here
           console.log(data);
+	  if(data["code"]==0)
+	  {
+		alert("User is created.\n Id: "+data["data"]["id"]);
+	  }
+	  else if(data["code"]==1)
+	  {
+		  alert("Blog is created.\n Id: "+data["data"]["blog_id"]+"\n Name: "+data["data"]["blog_name"]);
+	  }
+	  else if(data["code"]==3)
+	  {
+		  alert(data["message"]);
+	  }
+	  else if(data["code"]==4)
+	  {
+		  alert(data["message"]+"\n Blog Name: "+data["data"]["blog_name"]);
+	  }
+	  else{
           var teamdiv = document.getElementById("team");
           const el = document.createElement('div');
           el.classList.add('member');
@@ -329,6 +346,7 @@
         el.append(el2);
 	el.append(el3);
         teamdiv.append(el);
+	}
         })
         .catch(error => {
           // Handle any errors here
